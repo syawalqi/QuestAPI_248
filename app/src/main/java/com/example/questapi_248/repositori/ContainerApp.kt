@@ -38,6 +38,9 @@ class DefaultContainerApp : ContainerApp{
         .build()
 
     private val retrofitService: ServiceApiSiswa by lazy {
+        retrofit.create(ServiceApiSiswa::class.java)
+
+    }
 
 
 }
