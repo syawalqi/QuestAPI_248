@@ -1,5 +1,6 @@
 package com.example.questapi_248.repositori
 
+import com.example.questapi_248.apiservice.ServiceApiSiswa
 import com.example.questapi_248.modeldata.DataSiswa
 
 
@@ -18,6 +19,8 @@ interface RepositoryDataSiswa {
 
 class JaringanRepositoryDataSiswa(
     private val serviceApiSiswa: ServiceApiSiswa
-) : RepositoryDataSiswa
+) : RepositoryDataSiswa{
+    
+}
 
 
