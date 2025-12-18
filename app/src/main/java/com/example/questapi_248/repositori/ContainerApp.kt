@@ -9,6 +9,10 @@ interface ContainerApp {
 
 class DefaultContainerApp : ContainerApp{
     private val baseUrl = "http://10.0.2.2/QuestApi_248/"
-}
 
-class
+
+    val logging = HttpLoggingInterceptor().apply{
+        level = HttpLoggingInterceptor.Level.BODY
+    }
+
+}
