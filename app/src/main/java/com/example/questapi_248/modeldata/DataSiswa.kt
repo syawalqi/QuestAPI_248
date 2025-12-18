@@ -6,6 +6,9 @@ data class DataSiswa(
     val nama : String,
     val alamat : String,
     val telpon : String,
+)
 
-
+data class UIStateSiswa(
+    val detailSiswa: DetailSiswa = DetailSiswa(),
+    val isEntryValid: Boolean = false
 )
