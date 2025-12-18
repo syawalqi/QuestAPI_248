@@ -1,5 +1,7 @@
 package com.example.questapi_248.repositori
 
+import com.example.questapi_248.modeldata.DataSiswa
+
 
 interface RepositoryDataSiswa {
 
@@ -7,12 +9,15 @@ interface RepositoryDataSiswa {
 
     suspend fun postDataSiswa(dataSiswa: DataSiswa): retrofit2.Response<Void>
 //  suspend fun getSatuSiswa(id: Int): DataSiswa
+
 //  suspend fun editSatuSiswa(id: Int, dataSiswa: DataSiswa):retrofit2.Response<Void>
+
 //  suspend fun deleteSatuSiswa(id: Int): DataSiswa
 
 }
 
+class JaringanRepositoryDataSiswa(
+    private val serviceApiSiswa: ServiceApiSiswa
+) : RepositoryDataSiswa
 
 
-
-}
