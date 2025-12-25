@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
@@ -21,23 +20,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.questapi_248.R
 import com.example.questapi_248.modeldata.DetailSiswa
 import com.example.questapi_248.modeldata.UIStateSiswa
-import com.example.questapi_248.uicontroller.route.DestinasiEntry
+import com.example.questapi_248.view.route.DestinasiEntry
 import com.example.questapi_248.viewmodel.EntryViewModel
 import com.example.questapi_248.viewmodel.provider.PenyediaViewModel
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun EntryScreen(
+fun EntrySiswaScreen(
     navigateBack: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: EntryViewModel =
-        viewModel(factory = PenyediaViewModel.Factory)
+    viewModel: EntryViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ) {
     val coroutineScope = rememberCoroutineScope()
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
@@ -53,7 +50,6 @@ fun EntryScreen(
             )
         }
     ) { innerPadding ->
-
         EntrySiswaBody(
             uiStateSiswa = viewModel.uiStateSiswa,
             onSiswaValueChange = viewModel::updateUiState,
@@ -80,16 +76,15 @@ fun EntrySiswaBody(
 ) {
     Column(
         verticalArrangement = Arrangement.spacedBy(
-            dimensionResource(id = R.dimen.padding_large)
+            dimensionResource(R.dimen.padding_large)
         ),
-        modifier = modifier.padding(dimensionResource(id = R.dimen.padding_medium))
+        modifier = modifier.padding(dimensionResource(R.dimen.padding_medium))
     ) {
         FormTambahSiswa(
             detailSiswa = uiStateSiswa.detailSiswa,
             onValueChange = onSiswaValueChange,
             modifier = Modifier.fillMaxWidth()
         )
-
         Button(
             onClick = onSaveClick,
             enabled = uiStateSiswa.isEntryValid,
@@ -111,10 +106,9 @@ fun FormTambahSiswa(
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(
-            dimensionResource(id = R.dimen.padding_medium)
+            dimensionResource(R.dimen.padding_medium)
         )
     ) {
-
         OutlinedTextField(
             value = detailSiswa.nama,
             onValueChange = { onValueChange(detailSiswa.copy(nama = it)) },
@@ -123,7 +117,6 @@ fun FormTambahSiswa(
             enabled = enabled,
             singleLine = true
         )
-
         OutlinedTextField(
             value = detailSiswa.alamat,
             onValueChange = { onValueChange(detailSiswa.copy(alamat = it)) },
@@ -132,11 +125,9 @@ fun FormTambahSiswa(
             enabled = enabled,
             singleLine = true
         )
-
         OutlinedTextField(
             value = detailSiswa.telpon,
             onValueChange = { onValueChange(detailSiswa.copy(telpon = it)) },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             label = { Text(stringResource(R.string.telpon)) },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
@@ -146,17 +137,17 @@ fun FormTambahSiswa(
         if (enabled) {
             Text(
                 text = stringResource(R.string.required_field),
-                modifier = Modifier
-                    .padding(
-                        start = dimensionResource(id = R.dimen.padding_medium)
-                    )
+                modifier = Modifier.padding(
+                    start = dimensionResource(R.dimen.padding_medium)
+                )
             )
         }
 
         Divider(
-            thickness = dimensionResource(id = R.dimen.padding_small),
-            modifier = Modifier
-                .padding(bottom = dimensionResource(id = R.dimen.padding_medium))
+            thickness = dimensionResource(R.dimen.padding_small),
+            modifier = Modifier.padding(
+                bottom = dimensionResource(R.dimen.padding_medium)
+            )
         )
     }
 }
